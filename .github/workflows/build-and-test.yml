@@ -1,40 +1,36 @@
-# Имя пайплайна
 name: Build & Test Workflow
 
-# Триггеры запуска пайплайна
 on:
   push:
     branches:
-      - main     # Тригер на коммиты в основную ветку
-  pull_request:  # Тригер на открытие нового Pull Request'а
+      - main
+  pull_request:
+    types: [opened, synchronize]
 
-# Основной Job (задача)
 jobs:
   build-and-test:
-    # Используем последнее Ubuntu окружение
     runs-on: ubuntu-latest
 
-    # Последовательность действий (шагов)
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3 # Загружаем код проекта
+    - name: Checkout Code
+      uses: actions/checkout@v3
 
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.x'  # Выберите нужную версию .NET Core
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.x'
 
-      - name: Restore NuGet Packages
-        run: dotnet restore # Восстанавливаем зависимые библиотеки
+    - name: Restore NuGet Packages
+      run: dotnet restore src/MyProject.sln  # Исправленная строка!
 
-      - name: Build Solution
-        run: dotnet build --configuration Release --no-restore # Собираем решение
+    - name: Build Solution
+      run: dotnet build --configuration Release --no-restore
 
-      - name: Run Unit Tests
-        run: dotnet test --configuration Release --no-build --logger trx # Запускаем тесты
+    - name: Run Unit Tests
+      run: dotnet test --configuration Release --no-build --logger trx
 
-      - name: Upload Test Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: ./testResults/*.trx # Загрузка результатов тестов в Artifacts
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: ./testResults/*.trx
