@@ -2,9 +2,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31501.361
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary", "src\MyLibrary\MyLibrary.csproj", "{GUID}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTests", "src\MyTests\MyTests.csproj", "{GUID}"
+Project("{...guid...}") = "MyLibrary", "src\MyLibrary\MyLibrary.csproj", "{...guid...}"
+Project("{...guid...}") = "MyTests", "src\MyTests\MyTests.csproj", "{...guid...}"
 EndProject
 Global
     GlobalSection(SolutionConfigurationPlatforms) = preSolution
