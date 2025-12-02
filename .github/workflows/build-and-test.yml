@@ -34,7 +34,7 @@ jobs:
         run: dotnet test --configuration Release --no-build --logger trx # Запускаем тесты
 
       - name: Upload Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: ./testResults/*.trx # Загрузка результатов тестов в Artifacts
